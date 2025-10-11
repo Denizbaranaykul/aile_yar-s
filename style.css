@@ -1,0 +1,363 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700,900&family=Poppins:wght@400,700&display=swap');
+
+/* TEMA RENK DEĞİŞKENLERİ */
+:root {
+    /* Varsayılan: Koyu Tema */
+    --main-bg: linear-gradient(135deg, #1f283e, #2c3e50);
+    --text-color: #ecf0f1;
+    --title-color: #f1c40f;
+    --panel-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --answer-back-bg: #ecf0f1;
+    --answer-back-text: #333;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --mavi-takim: #3498db;
+    --kirmizi-takim: #e74c3c;
+    --altin-rengi: #f1c40f;
+}
+
+body.light-theme {
+    /* Açık Tema Değişkenleri */
+    --main-bg: #f0f2f5;
+    --text-color: #333;
+    --title-color: #2c3e50;
+    --panel-bg: #ffffff;
+    --border-color: #dee2e6;
+    --input-bg: #f0f2f5;
+    --answer-back-bg: #2c3e50;
+    --answer-back-text: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: var(--main-bg);
+    color: var(--text-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1vh 2vw;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+.team-score p,
+.answer-puan,
+.answer-box .front {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(2em, 4vh, 3em);
+    color: var(--title-color);
+    text-shadow: 2px 2px 4px var(--shadow-color);
+    margin: 1vh 0;
+    flex-shrink: 0;
+}
+
+/* Ana Oyun Alanı */
+.game-container {
+    flex-grow: 1;
+    display: flex;
+    gap: 2vw;
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 5px 25px var(--shadow-color);
+    padding: 2vh 1.5vw;
+    text-align: center;
+    align-items: stretch;
+    min-height: 0;
+}
+
+.main-game-content {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.question-area h2 {
+    font-size: clamp(1.5em, 3.5vh, 2.2em);
+    min-height: 0;
+    margin: 1vh 0;
+    font-weight: 700;
+}
+
+.answer-board {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5vh;
+    margin: 1.5vh 0;
+    perspective: 1000px;
+}
+
+.answer-box {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.answer-box .front,
+.answer-box .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vh 1.5vw;
+    font-size: clamp(1.2em, 3vh, 1.8em);
+}
+
+.answer-box .front {
+    background-color: #34495e;
+    color: var(--altin-rengi);
+    justify-content: center;
+}
+
+.answer-box .back {
+    background-color: var(--answer-back-bg);
+    color: var(--answer-back-text);
+    transform: rotateY(180deg);
+}
+
+.answer-box.visible {
+    transform: rotateY(180deg);
+}
+
+.answer-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.score-area {
+    display: flex;
+    justify-content: space-around;
+    border-top: 2px solid var(--border-color);
+    padding-top: 1.5vh;
+    margin-top: 1.5vh;
+}
+
+.team-score {
+    width: 48%;
+    padding: 1vh;
+    border-radius: 8px;
+    color: var(--light-text);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.team-score h3 {
+    font-size: clamp(1em, 2.5vh, 1.5em);
+    margin: 0;
+    font-weight: 700;
+}
+
+.team-score p {
+    font-size: clamp(1.8em, 5vh, 3em);
+    margin: 0.5vh 0 0;
+}
+
+.team-score.blue-team {
+    background-color: var(--mavi-takim);
+}
+
+.team-score.red-team {
+    background-color: var(--kirmizi-takim);
+}
+
+/* Moderatör Paneli */
+.moderator-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2vh 1.5vw;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.panel-header h3 {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.moderator-panel h3 {
+    color: var(--altin-rengi);
+    font-size: clamp(1.2em, 3vh, 1.6em);
+}
+
+.feedback {
+    min-height: 4vh;
+    color: #e74c3c;
+    font-weight: 700;
+    font-size: clamp(0.9em, 2vh, 1em);
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.controls,
+#game-over-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    margin-top: 1.5vh;
+}
+
+#game-over-panel {
+    flex-grow: 1;
+    justify-content: center;
+    text-align: center;
+}
+
+#game-over-panel h2 {
+    font-size: clamp(1.2em, 3vh, 1.8em);
+    color: var(--altin-rengi);
+}
+
+/* Kontroller ve Butonlar */
+#cevap-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.5vh;
+    border-radius: 5px;
+    font-size: clamp(0.9em, 2vh, 1em);
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+button {
+    padding: 1.5vh;
+    font-size: clamp(0.9em, 2vh, 1em);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+button:disabled {
+    background-color: #7f8c8d !important;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#btn-theme-toggle {
+    width: auto;
+    background: none;
+    border: none;
+    font-size: clamp(1.2em, 3vh, 1.8em);
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+#btn-theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: none;
+}
+
+#btn-cevap-kontrol {
+    background-color: #27ae60;
+    color: var(--light-text);
+}
+
+#btn-soru-goster {
+    background-color: var(--mavi-takim);
+    color: var(--light-text);
+}
+
+#btn-yeni-soru {
+    background-color: var(--kirmizi-takim);
+    color: var(--light-text);
+}
+
+.btn-danger {
+    background-color: #9b2323;
+    color: var(--light-text);
+}
+
+#btn-restart-game {
+    background-color: var(--altin-rengi);
+    color: var(--dark-text);
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(4px);
+    }
+}
+
+.shake-animation {
+    animation: shake 0.5s ease-in-out;
+}

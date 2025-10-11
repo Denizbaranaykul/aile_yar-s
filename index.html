@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Kişiye Sorduk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>100 Kişiye Sorduk</h1>
+        <div class="game-container">
+
+            <div class="main-game-content">
+                <div class="question-area">
+                    <h2 id="question-title">Yarışmaya Hoş Geldiniz!</h2>
+                </div>
+                <div class="answer-board" id="answer-board"></div>
+                <div class="score-area">
+                    <div class="team-score blue-team">
+                        <h3>MAVİ TAKIM</h3>
+                        <p id="mavi-skor">0</p>
+                    </div>
+                    <div class="team-score red-team">
+                        <h3>KIRMIZI TAKIM</h3>
+                        <p id="kirmizi-skor">0</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="moderator-panel">
+                <div class="panel-header">
+                    <h3>Moderatör Paneli</h3>
+
+                </div>
+
+                <div id="moderator-feedback" class="feedback"></div>
+
+                <div class="controls">
+                    <div class="team-selection">
+                        <label>Cevap Hakkı:</label>
+                        <div>
+                            <input type="radio" id="select-mavi" name="takim-secimi" value="mavi">
+                            <label for="select-mavi">Mavi Takım</label>
+                            <input type="radio" id="select-kirmizi" name="takim-secimi" value="kirmizi">
+                            <label for="select-kirmizi">Kırmızı Takım</label>
+                        </div>
+                    </div>
+                    <div class="cevap-kontrol-alani">
+                        <input type="text" id="cevap-input" placeholder="Takımın cevabını buraya yazın...">
+                        <button id="btn-cevap-kontrol">Cevabı Kontrol Et</button>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="btn-soru-goster">Soru Göster</button>
+                        <button id="btn-yeni-soru">Yeni Soru Başlat</button>
+                        <button id="btn-oyunu-bitir" class="btn-danger">Oyunu Bitir</button>
+                        <button id="btn-theme-toggle" title="Temayı Değiştir"> ☀️</button>
+                    </div>
+                </div>
+
+                <div id="game-over-panel" class="hidden">
+                    <h2 id="winner-announcement"></h2>
+                    <button id="btn-restart-game">Yeniden Başlat</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <audio id="sound-correct" src="success-340660.mp3"></audio>
+    <audio id="sound-wrong" src="spin-fail-295088.mp3"></audio>
+    <audio id="sound-win" src="you-win-sequence-2-183949.mp3"></audio>
+
+    <script src="sorular.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
